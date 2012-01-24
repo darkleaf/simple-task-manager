@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20120124184628) do
   create_table "stories", :force => true do |t|
     t.string   "title"
     t.text     "body"
-    t.integer  "owner_id"
+    t.integer  "user_id"
     t.integer  "responsible_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
