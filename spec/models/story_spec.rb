@@ -16,7 +16,7 @@ describe Story do
   end
 
 
-  describe "user associations" do
+  describe "story associations" do
 
     before(:each) do
       @story = @user.stories.create(@attr)
@@ -58,4 +58,39 @@ describe Story do
     long_title_story.should_not be_valid
   end
 
+  describe "states" do
+
+    before(:each) do
+      @story = @user.stories.create(@attr)
+    end
+
+    it "should create a new story with state new" do
+      @story.new?.should be_true
+    end
+
+    it "should change status from new to started only" do
+      @story.state = 'new'
+      @story.can_start?.should be_true
+      @story.can_finish?.should be_false
+      @story.can_accept?.should be_false
+      @story.can_reject?.should be_false
+    end
+
+    it "should change status from started to finished only" do
+      @story.state = 'started'
+      @story.can_start?.should be_false
+      @story.can_finish?.should be_true
+      @story.can_accept?.should be_false
+      @story.can_reject?.should be_false
+    end
+
+    it "should change status from finished to accepted or rejected only" do
+      @story.state = 'finished'
+      @story.can_start?.should be_false
+      @story.can_finish?.should be_false
+      @story.can_accept?.should be_true
+      @story.can_reject?.should be_true
+    end
+
+  end
 end
