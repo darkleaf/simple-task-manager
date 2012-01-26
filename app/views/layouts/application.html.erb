@@ -7,16 +7,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= params[:controller] %>">
+
+ <!-- Topbar
+    ================================================== -->
+    <div class="topbar" data-scrollspy="scrollspy" >
+      <div class="topbar-inner">
+        <div class="container">
+          <a class="brand" href="#">Simply task manager</a>
+          <ul class="nav">
+            <li><a href="#about">About</a></li>
+            <li><a href="#less">Contact</a></li>
+	    <% if current_user %>
+	    <li><p>Logged in as <%= current_user.email %></p></li>
+	    <li><%= link_to "Log out", log_out_path %></li>
+	    <% else %>
+	    <li><%= link_to "Sign up", sign_up_path %></li>
+	    <li><%= link_to "Log in", log_in_path %></li>
+	    <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
   
-  <div id="user_nav">
-    <% if current_user %>
-      Logged in as <%= current_user.email %>.
-      <%= link_to "Log out", log_out_path %>
-    <% else %>
-      <%= link_to "Sign up", sign_up_path %> or
-      <%= link_to "log in", log_in_path %>
-    <% end %>
-  </div>
 
   <div id="container">
     <% flash.each do |name, msg| %>
