@@ -1,7 +1,14 @@
 Stm::Application.routes.draw do
   resources :stories
-
   resources :users
+  resources :sessions
+
+  get "logout" => "sessions#destroy", :as => "log_out"
+  get "login" => "sessions#new", :as => "log_in"
+  get "signup" => "users#new", :as => "sign_up"
+
+  root :to => 'users#new'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
