@@ -45,7 +45,7 @@ class StoriesController < ApplicationController
     valid_params = params[:story]
     responsible_user_id = params[:story][:responsible_user_id]
     valid_params.delete(:responsible_user_id)
-    valid_params[:responsible_user] = User.find(responsible_user_id)
+    valid_params[:responsible_user] = User.find(responsible_user_id) unless responsible_user_id.empty?
 
     @story = @current_user.stories.new(valid_params)
 
@@ -65,8 +65,14 @@ class StoriesController < ApplicationController
   def update
     @story = Story.find(params[:id])
 
+    valid_params = params[:story]
+    responsible_user_id = params[:story][:responsible_user_id]
+    valid_params.delete(:responsible_user_id)
+    valid_params[:responsible_user] = User.find(responsible_user_id) unless responsible_user_id.empty?
+    valid_params.delete(:state) if valid_params[:state].empty?
+
     respond_to do |format|
-      if @story.update_attributes(params[:story])
+      if @story.update_attributes(valid_params)
         format.html { redirect_to @story, :notice => 'Story was successfully updated.' }
         format.json { head :ok }
       else

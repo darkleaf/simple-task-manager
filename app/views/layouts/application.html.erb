@@ -23,9 +23,8 @@
         <div class="container">
           <a class="brand" href="#">Simply task manager</a>
           <ul class="nav">
-            <li><a href="#about">About</a></li>
-            <li><a href="#less">Contact</a></li>
 	    <% if current_user %>
+	    <li><%= link_to "Stories", stories_path %><li>
 	    <li><p>Logged in as <%= current_user.email %></p></li>
 	    <li><%= link_to "Log out", log_out_path %></li>
 	    <% else %>

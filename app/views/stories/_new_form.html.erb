@@ -25,10 +25,6 @@
     <%= f.select "responsible_user_id", User.all.collect {|p| [ p.name, p.id ] }, :include_blank => 'None' %>
   </div>
 
-<%= f.label :state %><br />
-    <%= f.collection_select :state, @story.state_transitions, :to, :human_to_name, :include_blank => @story.human_state_name %>
-
-
   <div class="actions">
     <%= f.submit %>
   </div>
