@@ -10,24 +10,35 @@
       </ul>
     </div>
   <% end %>
+  <div class="row">
+    <div class="span16">
+      <div class="clearfix">
+	<%= f.label :name %><br />
+	<div class="input">
+	  <%= f.text_field :name %>
+	</div>
+      </div>
+      <div class="clearfix">
+	<%= f.label :email %><br />
+	<div class="input">
+	  <%= f.text_field :email %>
+	</div>
+      </div>
+      <div class="clearfix">
+	<%= f.label :password %><br />
+	<div class="input">
+	  <%= f.password_field :password %>
+	</div>
+      </div>
+      <div class="clearfix">
+	<%= f.label :password_confirmation %><br />
+	<div class="input">
+	  <%= f.password_field :password_confirmation %>
+	</div>
+      </div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+      <%= f.submit %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
 <% end %>

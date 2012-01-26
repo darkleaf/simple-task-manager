@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Auth Example</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body class="<%= params[:controller] %>">
+  <head>
+    <title>Simply task manager</title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
 
- <!-- Topbar
-    ================================================== -->
-    <div class="topbar" data-scrollspy="scrollspy" >
-      <div class="topbar-inner">
+
+    <style type="text/css">
+      body {
+        padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+
+  </head>
+  <body class="<%= params[:controller] %>">
+
+    <!-- Topbar
+	 ================================================== -->
+    <div class="topbar">
+      <div class="fill">
         <div class="container">
           <a class="brand" href="#">Simply task manager</a>
           <ul class="nav">
@@ -30,11 +38,22 @@
     </div>
   
 
-  <div id="container">
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-    <% end %>
-    <%= yield %>
-  </div>
+    <div class="container">
+
+	<div class="row">
+	  <div class="span16">
+	    <% flash.each do |name, msg| %>
+	    <div class="alert-message info" data-alert="alert">
+	      <a class="close" href="#">&times;</a>
+   	      <%= content_tag :p, msg %>
+	    </div>
+	    <% end %>
+	  </div>
+	</div>
+
+
+
+      <%= yield %>
+    </div>
 </body>
 </html>

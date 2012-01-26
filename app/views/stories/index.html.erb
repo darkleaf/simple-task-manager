@@ -6,6 +6,7 @@
     <th>Body</th>
     <th>User</th>
     <th>Responsible user</th>
+    <th>State</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,8 +16,9 @@
   <tr>
     <td><%= story.title %></td>
     <td><%= story.body %></td>
-    <td><%= story.user_id %></td>
-    <td><%= story.responsible_user_id %></td>
+    <td><%= story.user.name %></td>
+    <td><%= story.responsible_user.name %></td>
+    <td><%= story.state %></td>
     <td><%= link_to 'Show', story %></td>
     <td><%= link_to 'Edit', edit_story_path(story) %></td>
     <td><%= link_to 'Destroy', story, :confirm => 'Are you sure?', :method => :delete %></td>

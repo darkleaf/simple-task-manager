@@ -42,7 +42,12 @@ class StoriesController < ApplicationController
   # POST /stories
   # POST /stories.json
   def create
-    @story = Story.new(params[:story])
+    valid_params = params[:story]
+    responsible_user_id = params[:story][:responsible_user_id]
+    valid_params.delete(:responsible_user_id)
+    valid_params[:responsible_user] = User.find(responsible_user_id)
+
+    @story = @current_user.stories.new(valid_params)
 
     respond_to do |format|
       if @story.save

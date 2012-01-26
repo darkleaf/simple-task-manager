@@ -19,13 +19,10 @@
     <%= f.label :body %><br />
     <%= f.text_area :body %>
   </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
-  </div>
+
   <div class="field">
     <%= f.label :responsible_user_id %><br />
-    <%= f.number_field :responsible_user_id %>
+    <%= f.select "responsible_user_id", User.all.collect {|p| [ p.name, p.id ] }, :include_blank => 'None' %>
   </div>
   <div class="actions">
     <%= f.submit %>
